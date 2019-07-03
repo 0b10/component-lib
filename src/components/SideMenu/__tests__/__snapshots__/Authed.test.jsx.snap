@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Package: SideMenu Component: Authed should match snapshot 1`] = `
+<Authed
+  authed={true}
+>
+  <div>
+    42
+  </div>
+</Authed>
+`;
+
+exports[`Package: SideMenu Component: Authed should match snapshot 2`] = `
+<Authed
+  authed={false}
+/>
+`;

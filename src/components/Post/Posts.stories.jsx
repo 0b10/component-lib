@@ -1,6 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import CssBaseLine from "@material-ui/core/CssBaseline";
+
 import { Posts, Post } from "./Posts";
 import { ThemeProvider, themes } from "../ThemeProvider";
 
@@ -8,6 +10,7 @@ import { ThemeProvider, themes } from "../ThemeProvider";
 storiesOf("Post", module)
   .add("'Favorite' activated", () => (
     <ThemeProvider theme={themes.light}>
+      <CssBaseLine />
       <Post
         eventNames={{
           failedRemoveFavorite: "failedRemoveFavorite",
@@ -27,6 +30,7 @@ storiesOf("Post", module)
   ))
   .add("'Read later' activated", () => (
     <ThemeProvider theme={themes.light}>
+      <CssBaseLine />
       <Post
         eventNames={{
           failedRemoveFavorite: "failedRemoveFavorite",
@@ -51,6 +55,7 @@ const postContainerComponent = "Posts";
 storiesOf(postContainerComponent, module)
   .add("Light theme", () => (
     <ThemeProvider theme="light">
+      <CssBaseLine />
       <Posts
         handleFavorite={action("handleFavorite")}
         handleReadLater={action("handleReadLater")}
@@ -70,6 +75,7 @@ storiesOf(postContainerComponent, module)
   ))
   .add("Dark theme", () => (
     <ThemeProvider theme="dark">
+      <CssBaseLine />
       <Posts
         handleFavorite={action("handleFavorite")}
         handleReadLater={action("handleReadLater")}
@@ -90,6 +96,7 @@ storiesOf(postContainerComponent, module)
 
 storiesOf(postContainerComponent, module).add("Default theme", () => (
   <ThemeProvider>
+    <CssBaseLine />
     <Posts
       handleFavorite={action("handleFavorite")}
       handleReadLater={action("handleReadLater")}
