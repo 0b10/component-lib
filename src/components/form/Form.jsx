@@ -28,11 +28,12 @@ export class Form extends PureComponent {
     return Object.freeze(values);
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     const names = this.getFieldNames(event.target);
     const values = this.getFieldValues(names, event.target);
-    this.props.isValid(values);
+    const isValid = await this.props.isValid(values);
+    console.log("result:", isValid);
   }
 
   render() {
