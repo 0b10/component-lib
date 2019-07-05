@@ -7,12 +7,32 @@ export class Form extends PureComponent {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getFieldNames = this.getFieldNames.bind(this);
+    this.getFieldValues = this.getFieldValues.bind(this);
+  }
+
+  getFieldNames(target) {
+    const names = [];
+    target.forEach(element => {
+      // Should iterate over elements only
+      element.nodeName === "INPUT" &&
+        element.name &&
+        names.push(element.name.toLowerCase());
+    });
+    return Object.freeze(names);
+  }
+
+  getFieldValues(keys, target) {
+    const values = {};
+    keys.forEach(key => (values[key] = target[key].value));
+    return Object.freeze(values);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { target } = event;
-    console.log({ value: target.test.value });
+    const names = this.getFieldNames(event.target);
+    const values = this.getFieldValues(names, event.target);
+    this.props.isValid(values);
   }
 
   render() {
@@ -41,5 +61,6 @@ Form.propTypes = {
       //** html input type: text, email, password etc */
       type: PropTypes.string.isRequired
     }).isRequired
-  ).isRequired
+  ).isRequired,
+  isValid: PropTypes.func.isRequired
 };
