@@ -32,8 +32,8 @@ export class Form extends PureComponent {
     event.preventDefault();
     const names = this.getFieldNames(event.target);
     const values = this.getFieldValues(names, event.target);
-    const isValid = await this.props.isValid(values);
-    console.log("result:", isValid);
+    let result = await this.props.validate(values);
+    console.log("result:", result);
   }
 
   render() {
@@ -63,5 +63,5 @@ Form.propTypes = {
       type: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  isValid: PropTypes.func.isRequired
+  validate: PropTypes.func.isRequired
 };
