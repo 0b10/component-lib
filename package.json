@@ -12,12 +12,13 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --testPathIgnorePatterns='^<rootDir>\/(?:.+\/)?(?:__helpers__|node_modules)(?:\/.*)?$'",
+    "test": "react-scripts test --env=jsdom --testPathIgnorePatterns='^<rootDir>/(?:.+/)?(?:__helpers__|node_modules)(?:/.*)?$'",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
@@ -43,6 +44,8 @@
     "@storybook/addon-links": "^5.1.9"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
