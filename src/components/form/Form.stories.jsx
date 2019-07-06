@@ -33,16 +33,22 @@ const getMockProps = (textFields = textFields_, validate = () => null) => ({
 
 /**
  * Yup validator. Pass schema, and { ...values }
- * @param {Object} schema - a Yup schema object
- * @returns {Object} - { valid, message, name }
- * @example validate(schema)({ ...values }) => { valid: false, message: "Foo", name: "bar" }
+ * @param {Object} schema - A Yup schema object that should consider all field names provided to
+ *  the Form component.
+ * @returns {Object} - { valid: true } or { valid: false, [fieldname]: "message", [...] }
+ * @example validate(schema)({ ...values }) => { [username]: "Foo", [password]: "Bar" }
  */
-const validate = schema => async values => {
+const validate = (schema, options = { abortEarly: false }) => async values => {
   try {
-    await schema.validate(values);
+    await schema.validate(values, options);
     return { valid: true };
   } catch (e) {
-    return { valid: false, message: e.message, name: e.path };
+    // build fields = { [name]: message }
+    const fields = {};
+    e.inner.forEach(({ path, message }) => (fields[path] = message));
+
+    // now { valid, field1, field2 } etc
+    return { valid: false, ...fields };
   }
 };
 

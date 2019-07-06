@@ -3,26 +3,25 @@ import PropTypes from "prop-types";
 // 3rd party
 import { TextField, Button, Typography } from "@material-ui/core";
 
+//** messages must be in the form of { fieldname: message, fieldname2: message } */
 export class Form extends PureComponent {
   render() {
     const { props } = this;
     return (
       <form onSubmit={props.handleSubmit}>
         {props.textFields.map((tfProps, index) => {
-          const { name, message } = tfProps;
+          const { name } = tfProps;
+          const { messages } = props;
           return (
-            <React.Fragment>
-              <TextField
-                key={index}
-                variant="outlined"
-                size="large"
-                {...tfProps}
-              />
-              <Typography>
-                {(name && message && message[name]) || (
-                  <React.Fragment>&nbsp;</React.Fragment>
-                )}
-              </Typography>
+            <React.Fragment key={index}>
+              <TextField variant="outlined" size="large" {...tfProps} />
+              {
+                <Typography>
+                  {(messages && messages[name]) || (
+                    <React.Fragment>&nbsp;</React.Fragment>
+                  )}
+                </Typography>
+              }
             </React.Fragment>
           );
         })}
@@ -37,6 +36,7 @@ export const withValidation = validator => WrappedComponent =>
   class extends PureComponent {
     constructor(props) {
       super(props);
+      this.state = { valid: false };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.getFieldNames = this.getFieldNames.bind(this);
       this.getFieldValues = this.getFieldValues.bind(this);
@@ -63,14 +63,25 @@ export const withValidation = validator => WrappedComponent =>
       event.preventDefault();
       const names = this.getFieldNames(event.target);
       const values = this.getFieldValues(names, event.target);
+      console.info("validating:", values);
       let result = await this.props.validate(values);
-      console.log("result:", result);
+      console.info("RESULT:", result);
+
+      result.valid
+        ? this.setState({ valid: true, messages: undefined })
+        : this.setState({ valid: false, messages: result });
+
+      console.info("STATE", this.state);
     }
 
     render() {
       const { props } = this;
       return (
-        <WrappedComponent {...props.form} handleSubmit={this.handleSubmit} />
+        <WrappedComponent
+          {...props.form}
+          handleSubmit={this.handleSubmit}
+          messages={this.state.messages}
+        />
       );
     }
   };
@@ -88,5 +99,7 @@ Form.propTypes = {
       type: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  validate: PropTypes.func.isRequired
+  validate: PropTypes.func.isRequired,
+  // ** Validation message { [fieldname]: "message" } || undefined */
+  message: PropTypes.objectOf(PropTypes.string.isRequired)
 };
