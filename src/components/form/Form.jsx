@@ -57,7 +57,6 @@ Form.propTypes = {
       type: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  validate: PropTypes.func.isRequired,
   // ** Validation message { [fieldname]: "message" } || undefined */
   message: PropTypes.objectOf(PropTypes.string.isRequired),
   // ** It should reset the form and validation messages */

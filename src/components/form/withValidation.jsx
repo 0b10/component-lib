@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 
 /**
  * A validation HOC that is decoupled from any lower level validator implementaion.
+ * @arg {string} validator - A validation function that accepts an object of field names
+ *  e.g. { fieldName: value }.  Must return { valid: bool, [ fieldName: "message", ... ]}, where
+ *  upon validation error, a set of keys, defined by field names, reference a validation message.
  */
 export const withValidation = validator => WrappedForm => {
   class Validation extends PureComponent {
@@ -17,8 +20,9 @@ export const withValidation = validator => WrappedForm => {
 
     getFieldNames(target) {
       const names = [];
+
+      // Should iterate over elements only
       target.forEach(element => {
-        // Should iterate over elements only
         element.nodeName === "INPUT" &&
           element.name &&
           names.push(element.name.toLowerCase());
@@ -66,9 +70,7 @@ export const withValidation = validator => WrappedForm => {
 
   Validation.propTypes = {
     //** See Form propTypes */
-    form: PropTypes.object.isRequired,
-    //** Validator, must return { valid: bool, [ fieldName: "message", ... ]} */
-    validate: PropTypes.func.isRequired
+    form: PropTypes.object.isRequired
   };
 
   return Validation;
