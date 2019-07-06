@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { Form } from "./Form";
 import { withValidation } from "./withValidation";
 import * as yup from "yup";
+import { Grid } from "@material-ui/core";
 
 const componentName = "Form";
 
@@ -10,7 +11,13 @@ storiesOf(componentName, module)
   .add("Typical state", () => <Form {...getMockProps()} />)
   .add("withValidation", () => {
     const ValidatingForm = withValidation(yupValidator(schema))(Form);
-    return <ValidatingForm form={{ ...getMockProps() }} />;
+    return (
+      <Grid container>
+        <Grid item>
+          <ValidatingForm form={{ ...getMockProps() }} />
+        </Grid>
+      </Grid>
+    );
   });
 
 // >>> MOCK DATA >>>

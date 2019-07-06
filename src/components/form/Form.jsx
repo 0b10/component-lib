@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 // 3rd party
-import { TextField, Button, Typography } from "@material-ui/core";
+import { Box, Button, TextField, Typography } from "@material-ui/core";
 
 /**
  * A Form, with configurable fields, via the textFields prop.
@@ -19,11 +19,13 @@ export class Form extends PureComponent {
             <React.Fragment key={index}>
               <TextField variant="outlined" size="large" {...tfProps} />
               {
-                <Typography>
-                  {(messages && messages[name]) || (
-                    <React.Fragment>&nbsp;</React.Fragment>
-                  )}
-                </Typography>
+                <Box py={1}>
+                  <Typography align="right">
+                    {(messages && messages[name]) || (
+                      <React.Fragment>&nbsp;</React.Fragment>
+                    )}
+                  </Typography>
+                </Box>
               }
             </React.Fragment>
           );
