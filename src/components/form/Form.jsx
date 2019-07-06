@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 // 3rd party
 import { TextField, Button, Typography } from "@material-ui/core";
 
-//** messages must be in the form of { fieldname: message, fieldname2: message } */
+/**
+ * A Form, with configurable fields, via the textFields prop.
+ * The 'messages' prop must be in the form of { fieldname: message, fieldname2: message }
+ */
 export class Form extends PureComponent {
   render() {
     const { props } = this;
@@ -34,8 +37,11 @@ export class Form extends PureComponent {
   }
 }
 
-export const withValidation = validator => WrappedComponent =>
-  class extends PureComponent {
+/**
+ * A validation HOC that is decoupled from any lower level validator implementaion.
+ */
+export const withValidation = validator => WrappedForm => {
+  class Validation extends PureComponent {
     constructor(props) {
       super(props);
       this.state = { valid: false };
@@ -84,7 +90,7 @@ export const withValidation = validator => WrappedComponent =>
     render() {
       const { props } = this;
       return (
-        <WrappedComponent
+        <WrappedForm
           {...props.form}
           handleSubmit={this.handleSubmit}
           messages={this.state.messages}
@@ -92,12 +98,21 @@ export const withValidation = validator => WrappedComponent =>
         />
       );
     }
+  }
+
+  Validation.propTypes = {
+    //** See Form propTypes */
+    form: PropTypes.object.isRequired,
+    //** Validator, must return { valid: bool, [ fieldName: "message", ... ]} */
+    validate: PropTypes.func.isRequired
   };
 
+  return Validation;
+};
+
 Form.propTypes = {
-  //** An array of objects describing input fields */
+  //** An array of objects describing MUI TextField props */
   textFields: PropTypes.arrayOf(
-    //** Override/set any MUI TextField props */
     PropTypes.shape({
       // ** html label */
       label: PropTypes.string.isRequired,
@@ -109,5 +124,7 @@ Form.propTypes = {
   ).isRequired,
   validate: PropTypes.func.isRequired,
   // ** Validation message { [fieldname]: "message" } || undefined */
-  message: PropTypes.objectOf(PropTypes.string.isRequired)
+  message: PropTypes.objectOf(PropTypes.string.isRequired),
+  // ** It should reset the form and validation messages */
+  handleReset: PropTypes.func.isRequired
 };
