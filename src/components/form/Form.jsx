@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 // 3rd party
-import { Box, Button, TextField, Typography } from "@material-ui/core";
+import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
 
 /**
@@ -11,42 +11,66 @@ import { styled } from "@material-ui/styles";
 export class Form extends PureComponent {
   render() {
     const { props } = this;
+    const { buttons } = props;
     return (
-      <form onSubmit={props.handleSubmit}>
-        {props.textFields.map((tfProps, index) => {
-          const { name } = tfProps;
-          const { messages } = props;
-          return (
-            // ! messages[name] only exists if there's an error for that field
-            <React.Fragment key={index}>
-              <TextField
-                error={messages && typeof messages[name] === "string"}
-                variant="outlined"
-                size="large"
-                {...tfProps}
-              />
-              {
-                <Box py={1}>
-                  <ValidationMessage align="right">
-                    {(messages && messages[name]) || (
-                      <React.Fragment>&nbsp;</React.Fragment>
-                    )}
-                  </ValidationMessage>
-                </Box>
-              }
-            </React.Fragment>
-          );
-        })}
-        <Button type="submit">
-          {(props.buttons && props.buttons.submit) || "Submit"}
-        </Button>
-        <Button type="reset" onClick={props.handleReset}>
-          {(props.buttons && props.buttons.reset) || "Reset"}
-        </Button>
-      </form>
+      <Grid container>
+        <form onSubmit={props.handleSubmit}>
+          {props.textFields.map((tfProps, index) => {
+            const { name } = tfProps;
+            const { messages } = props;
+            return (
+              // ! messages[name] only exists if there's an error for that field
+              <Grid item key={index}>
+                <TextField
+                  error={messages && typeof messages[name] === "string"}
+                  variant="outlined"
+                  size="large"
+                  {...tfProps}
+                />
+                {
+                  <Box py={1}>
+                    <ValidationMessage align="right">
+                      {(messages && messages[name]) || (
+                        <React.Fragment>&nbsp;</React.Fragment>
+                      )}
+                    </ValidationMessage>
+                  </Box>
+                }
+              </Grid>
+            );
+          })}
+          <Grid item>
+            <SubmitButton
+              variant={(buttons && buttons.variant) || "contained"}
+              type="submit"
+              fullWidth={true}
+              size="large"
+              color="primary"
+            >
+              {(buttons && buttons.submit) || "Submit"}
+            </SubmitButton>
+          </Grid>
+          <Grid item>
+            <Button
+              variant={(buttons && buttons.variant) || "outlined"}
+              type="reset"
+              onClick={props.handleReset}
+              fullWidth={true}
+              size="large"
+            >
+              {(buttons && buttons.reset) || "Reset"}
+            </Button>
+          </Grid>
+        </form>
+      </Grid>
     );
   }
 }
+
+const SubmitButton = styled(Button)(({ theme }) => ({
+  fontWeight: "bold",
+  marginBottom: "20px"
+}));
 
 const ValidationMessage = styled(Typography)(({ theme }) => ({
   color: theme.palette.error.main,
@@ -71,7 +95,11 @@ Form.propTypes = {
   handleReset: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   buttons: PropTypes.shape({
+    //** The submit button text */
     submit: PropTypes.string,
-    reset: PropTypes.string
+    //** The reset button text */
+    reset: PropTypes.string,
+    //** An MUI variant */
+    variant: PropTypes.string
   })
 };
