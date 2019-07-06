@@ -1,7 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { Form, withValidation } from "./Form";
+import { Form } from "./Form";
+import { withValidation } from "./withValidation";
 import * as yup from "yup";
 
 const componentName = "Form";
