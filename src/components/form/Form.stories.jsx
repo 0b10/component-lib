@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import { Form } from "./Form";
 import { withValidation } from "./withValidation";
 import * as yup from "yup";
@@ -8,17 +7,10 @@ import * as yup from "yup";
 const componentName = "Form";
 
 storiesOf(componentName, module)
-  .add("Typical state", () => (
-    <Form {...getMockProps()} validate={action("Validator called")} />
-  ))
-  .add("With validation", () => {
-    const ValidatingForm = withValidation(validate)(Form);
-    return (
-      <ValidatingForm
-        form={{ ...getMockProps() }}
-        validate={validate(schema)}
-      />
-    );
+  .add("Typical state", () => <Form {...getMockProps()} />)
+  .add("withValidation", () => {
+    const ValidatingForm = withValidation(yupValidator(schema))(Form);
+    return <ValidatingForm form={{ ...getMockProps() }} />;
   });
 
 // >>> MOCK DATA >>>
@@ -27,8 +19,7 @@ const textFields_ = [
   { label: "Password", name: "password", type: "password" }
 ];
 
-const getMockProps = (textFields = textFields_, validate = () => null) => ({
-  validate,
+const getMockProps = (textFields = textFields_) => ({
   textFields
 });
 
@@ -37,9 +28,12 @@ const getMockProps = (textFields = textFields_, validate = () => null) => ({
  * @param {Object} schema - A Yup schema object that should consider all field names provided to
  *  the Form component.
  * @returns {Object} - { valid: true } or { valid: false, [fieldname]: "message", [...] }
- * @example validate(schema)({ ...values }) => { [username]: "Foo", [password]: "Bar" }
+ * @example yupValidator(schema)({ ...values }) => { [username]: "Foo", [password]: "Bar" }
  */
-const validate = (schema, options = { abortEarly: false }) => async values => {
+const yupValidator = (
+  schema,
+  options = { abortEarly: false }
+) => async values => {
   try {
     await schema.validate(values, options);
     return { valid: true };

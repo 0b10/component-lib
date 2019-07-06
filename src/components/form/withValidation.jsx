@@ -41,7 +41,7 @@ export const withValidation = validator => WrappedForm => {
       const names = this.getFieldNames(event.target);
       const values = this.getFieldValues(names, event.target);
       console.info("validating:", values);
-      let result = await this.props.validate(values);
+      let result = await validator(values);
       console.info("RESULT:", result);
 
       result.valid
