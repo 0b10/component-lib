@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { Form } from "./Form";
+import { Form, withValidation } from "./Form";
 import * as yup from "yup";
 
 const componentName = "Form";
@@ -10,9 +10,15 @@ storiesOf(componentName, module)
   .add("Typical state", () => (
     <Form {...getMockProps()} validate={action("Validator called")} />
   ))
-  .add("With validation", () => (
-    <Form {...getMockProps()} validate={validate(schema)} />
-  ));
+  .add("With validation", () => {
+    const ValidatingForm = withValidation(validate)(Form);
+    return (
+      <ValidatingForm
+        form={{ ...getMockProps() }}
+        validate={validate(schema)}
+      />
+    );
+  });
 
 // >>> MOCK DATA >>>
 const textFields_ = [
