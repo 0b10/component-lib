@@ -53,6 +53,14 @@ const validate = (schema, options = { abortEarly: false }) => async values => {
 };
 
 const schema = yup.object().shape({
-  username: yup.string().required("Required"),
-  password: yup.string().required("Required")
+  username: yup
+    .string()
+    .min(3, "Must be at least 3 characters")
+    .max(15, "Must be less than 15 characters")
+    .required("Required"),
+  password: yup
+    .string()
+    .min(8, "Must be at least 8 characters")
+    .max(30, "Must not be more than 30 characters")
+    .required("Required")
 });
