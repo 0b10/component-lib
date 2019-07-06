@@ -25,6 +25,22 @@ storiesOf(componentName, module)
       </Grid>
     </ThemeProvider>
   ))
+  .add("Custom button text", () => (
+    <ThemeProvider>
+      <CssBaseLine />
+      <Grid container>
+        <Grid item>
+          <Box p={10}>
+            <Form
+              {...getMockProps()}
+              buttons={{ submit: "Custom Login", reset: "Custom Reset" }}
+              handleReset={action("handleReset()")}
+            />
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  ))
   .add("withValidation", () => {
     const ValidatingForm = withValidation(yupValidator(schema))(Form);
     return (

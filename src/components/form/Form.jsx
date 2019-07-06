@@ -37,9 +37,11 @@ export class Form extends PureComponent {
             </React.Fragment>
           );
         })}
-        <Button type="submit">Submit</Button>
+        <Button type="submit">
+          {(props.buttons && props.buttons.submit) || "Submit"}
+        </Button>
         <Button type="reset" onClick={props.handleReset}>
-          Reset
+          {(props.buttons && props.buttons.reset) || "Reset"}
         </Button>
       </form>
     );
@@ -67,5 +69,9 @@ Form.propTypes = {
   message: PropTypes.objectOf(PropTypes.string.isRequired),
   // ** It should reset the form and validation messages */
   handleReset: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  buttons: PropTypes.shape({
+    submit: PropTypes.string,
+    reset: PropTypes.string
+  })
 };
