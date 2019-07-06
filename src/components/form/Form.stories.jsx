@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 // 3rd party
 import CssBaseLine from "@material-ui/core/CssBaseline";
 import * as yup from "yup";
@@ -12,7 +13,18 @@ import { ThemeProvider } from "../ThemeProvider";
 const componentName = "Form";
 
 storiesOf(componentName, module)
-  .add("Typical state", () => <Form {...getMockProps()} />)
+  .add("Typical state", () => (
+    <ThemeProvider>
+      <CssBaseLine />
+      <Grid container>
+        <Grid item>
+          <Box p={10}>
+            <Form {...getMockProps()} handleReset={action("handleReset()")} />
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  ))
   .add("withValidation", () => {
     const ValidatingForm = withValidation(yupValidator(schema))(Form);
     return (
@@ -35,8 +47,14 @@ const textFields_ = [
   { label: "Password", name: "password", type: "password" }
 ];
 
-const getMockProps = (textFields = textFields_) => ({
-  textFields
+const getMockProps = (
+  textFields = textFields_,
+  handleSubmit = event => event.preventDefault(),
+  handleReset = () => null
+) => ({
+  textFields,
+  handleSubmit,
+  handleReset
 });
 
 /**
