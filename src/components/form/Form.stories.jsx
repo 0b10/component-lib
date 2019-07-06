@@ -1,9 +1,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+// 3rd party
+import CssBaseLine from "@material-ui/core/CssBaseline";
+import * as yup from "yup";
+import { Box, Grid } from "@material-ui/core";
+// Local
 import { Form } from "./Form";
 import { withValidation } from "./withValidation";
-import * as yup from "yup";
-import { Grid } from "@material-ui/core";
+import { ThemeProvider } from "../ThemeProvider";
 
 const componentName = "Form";
 
@@ -12,11 +16,16 @@ storiesOf(componentName, module)
   .add("withValidation", () => {
     const ValidatingForm = withValidation(yupValidator(schema))(Form);
     return (
-      <Grid container>
-        <Grid item>
-          <ValidatingForm form={{ ...getMockProps() }} />
+      <ThemeProvider>
+        <CssBaseLine />
+        <Grid container>
+          <Grid item>
+            <Box p={10}>
+              <ValidatingForm form={{ ...getMockProps() }} />
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      </ThemeProvider>
     );
   });
 
