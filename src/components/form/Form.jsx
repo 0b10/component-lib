@@ -26,7 +26,9 @@ export class Form extends PureComponent {
           );
         })}
         <Button type="submit">Submit</Button>
-        <Button type="reset">Reset</Button>
+        <Button type="reset" onClick={props.handleReset}>
+          Reset
+        </Button>
       </form>
     );
   }
@@ -40,6 +42,7 @@ export const withValidation = validator => WrappedComponent =>
       this.handleSubmit = this.handleSubmit.bind(this);
       this.getFieldNames = this.getFieldNames.bind(this);
       this.getFieldValues = this.getFieldValues.bind(this);
+      this.handleReset = this.handleReset.bind(this);
     }
 
     getFieldNames(target) {
@@ -57,6 +60,10 @@ export const withValidation = validator => WrappedComponent =>
       const values = {};
       keys.forEach(key => (values[key] = target[key].value));
       return Object.freeze(values);
+    }
+
+    handleReset() {
+      this.setState({ valid: false, messages: undefined });
     }
 
     async handleSubmit(event) {
@@ -81,6 +88,7 @@ export const withValidation = validator => WrappedComponent =>
           {...props.form}
           handleSubmit={this.handleSubmit}
           messages={this.state.messages}
+          handleReset={this.handleReset}
         />
       );
     }
