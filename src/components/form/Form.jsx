@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 // 3rd party
 import { Box, Button, TextField, Typography } from "@material-ui/core";
+import { styled } from "@material-ui/styles";
 
 /**
  * A Form, with configurable fields, via the textFields prop.
@@ -20,11 +21,11 @@ export class Form extends PureComponent {
               <TextField variant="outlined" size="large" {...tfProps} />
               {
                 <Box py={1}>
-                  <Typography align="right">
+                  <ValidationMessage align="right">
                     {(messages && messages[name]) || (
                       <React.Fragment>&nbsp;</React.Fragment>
                     )}
-                  </Typography>
+                  </ValidationMessage>
                 </Box>
               }
             </React.Fragment>
@@ -38,6 +39,11 @@ export class Form extends PureComponent {
     );
   }
 }
+
+const ValidationMessage = styled(Typography)(({ theme }) => ({
+  color: theme.palette.error.main,
+  fontWeight: "bold"
+}));
 
 Form.propTypes = {
   //** An array of objects describing MUI TextField props */
