@@ -17,8 +17,14 @@ export class Form extends PureComponent {
           const { name } = tfProps;
           const { messages } = props;
           return (
+            // ! messages[name] only exists if there's an error for that field
             <React.Fragment key={index}>
-              <TextField variant="outlined" size="large" {...tfProps} />
+              <TextField
+                error={messages && typeof messages[name] === "string"}
+                variant="outlined"
+                size="large"
+                {...tfProps}
+              />
               {
                 <Box py={1}>
                   <ValidationMessage align="right">
