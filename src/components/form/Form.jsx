@@ -1,16 +1,31 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 // 3rd party
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Typography } from "@material-ui/core";
 
 export class Form extends PureComponent {
   render() {
     const { props } = this;
     return (
       <form onSubmit={props.handleSubmit}>
-        {props.textFields.map((tfProps, index) => (
-          <TextField key={index} variant="outlined" size="large" {...tfProps} />
-        ))}
+        {props.textFields.map((tfProps, index) => {
+          const { name, message } = tfProps;
+          return (
+            <React.Fragment>
+              <TextField
+                key={index}
+                variant="outlined"
+                size="large"
+                {...tfProps}
+              />
+              <Typography>
+                {(name && message && message[name]) || (
+                  <React.Fragment>&nbsp;</React.Fragment>
+                )}
+              </Typography>
+            </React.Fragment>
+          );
+        })}
         <Button type="submit">Submit</Button>
         <Button type="reset">Reset</Button>
       </form>
