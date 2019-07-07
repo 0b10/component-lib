@@ -66,4 +66,35 @@ describe("yupValidator()", () => {
       });
     }
   );
+
+  // +++ check successfully accepts +++
+  describe.each`
+    paramOne   | paramTwo
+    ${"aaa"}   | ${"aaa"}
+    ${"aaaa"}  | ${"aaa"}
+    ${"aaa"}   | ${"aaaa"}
+    ${"aaaa"}  | ${"aaaa"}
+    ${"aaaaa"} | ${"aaaaa"}
+    ${"aaaa"}  | ${"aaaaa"}
+    ${"aaaaa"} | ${"aaaa"}
+  `(
+    "Valid values: paramOne: $paramOne, paramTwo: $paramTwo",
+    ({ paramOne, paramTwo }) => {
+      // +++ test is rejected +++
+      it("should accept with return value { valid: true }", async () => {
+        const result = await validate({ paramOne, paramTwo });
+        expect(result.valid).toBe(true);
+      });
+
+      it("should have an undefined message for paramOne", async () => {
+        const { paramOne: p1RetVal } = await validate({ paramOne, paramTwo });
+        expect(p1RetVal).toBe(undefined);
+      });
+
+      it("should have an undefined message for paramTwo", async () => {
+        const { paramTwo: retval } = await validate({ paramOne, paramTwo });
+        expect(retval).toBe(undefined);
+      });
+    }
+  );
 });
