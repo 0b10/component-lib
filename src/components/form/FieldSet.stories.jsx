@@ -7,7 +7,7 @@ import CssBaseLine from "@material-ui/core/CssBaseline";
 // Local
 import { Form } from "./Form";
 import { ThemeProvider } from "../ThemeProvider";
-import * as helpers from "./__helpers__/stories";
+import { getMockFormProps } from "./__helpers__/stories";
 import { FieldSet } from "./FieldSet";
 
 const packageName = "Form";
@@ -20,7 +20,7 @@ storiesOf(packageName, module).add("FieldSet", () => (
         <Box p={10}>
           <FieldSet legend="Login">
             <Form
-              {...helpers.getMockFormProps()}
+              {...getMockFormProps()}
               handleReset={action("handleReset()")}
             />
           </FieldSet>
