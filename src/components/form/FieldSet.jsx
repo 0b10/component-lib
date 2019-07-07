@@ -21,7 +21,8 @@ FieldSet.defaultProps = {
   styles: {
     fieldset: {
       padding: "50px",
-      borderRadius: "4px"
+      borderRadius: "4px",
+      borderWidth: "1px"
     }
   }
 };
