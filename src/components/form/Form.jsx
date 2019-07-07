@@ -13,8 +13,8 @@ export class Form extends PureComponent {
     const { props } = this;
     const { buttons, messages } = props;
     return (
-      <Grid container>
-        <form onSubmit={props.handleSubmit}>
+      <Grid style={props.containerStyle} container>
+        <form onSubmit={props.handleSubmit} style={{ width: "100%" }}>
           {props.textFields.map((tfProps, index) => {
             const { name } = tfProps;
             return (
@@ -58,7 +58,6 @@ export class Form extends PureComponent {
     );
   }
 }
-
 // >>> STYLES >>>
 const SubmitButton = styled(Button)(() => ({
   fontWeight: "bold",
@@ -94,10 +93,15 @@ Form.propTypes = {
     // No point in defining these as they are passed to MUI - it can handle types
     submit: PropTypes.object,
     reset: PropTypes.object
-  })
+  }),
+  //** The style element for the container - defaults to 'width: "320px"' */
+  containerStyle: PropTypes.object
 };
 
 Form.defaultProps = {
+  containerStyle: {
+    width: "320px"
+  },
   buttons: {
     submit: {
       text: "Submit",
