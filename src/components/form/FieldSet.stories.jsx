@@ -10,9 +10,9 @@ import { ThemeProvider } from "../ThemeProvider";
 import * as helpers from "./__helpers__/stories";
 import { FieldSet } from "./FieldSet";
 
-const componentName = "FieldSet";
+const packageName = "Form";
 
-storiesOf(componentName, module).add("Typical state", () => (
+storiesOf(packageName, module).add("FieldSet", () => (
   <ThemeProvider>
     <CssBaseLine />
     <Grid container>
