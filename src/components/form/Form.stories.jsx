@@ -25,7 +25,7 @@ storiesOf(componentName, module)
       </Grid>
     </ThemeProvider>
   ))
-  .add("Custom button text", () => (
+  .add("Custom buttons", () => (
     <ThemeProvider>
       <CssBaseLine />
       <Grid container>
@@ -33,7 +33,21 @@ storiesOf(componentName, module)
           <Box p={10}>
             <Form
               {...getMockProps()}
-              buttons={{ submit: "Custom Login", reset: "Custom Reset" }}
+              buttons={{
+                submit: {
+                  text: "Foo",
+                  variant: "outlined",
+                  fullWidth: true,
+                  color: "inherit",
+                  disabled: true
+                },
+                reset: {
+                  text: "Bar",
+                  variant: "contained",
+                  fullWidth: false,
+                  color: "secondary"
+                }
+              }}
               handleReset={action("handleReset()")}
             />
           </Box>

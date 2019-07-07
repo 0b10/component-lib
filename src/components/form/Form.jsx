@@ -11,13 +11,12 @@ import { styled } from "@material-ui/styles";
 export class Form extends PureComponent {
   render() {
     const { props } = this;
-    const { buttons } = props;
+    const { buttons, messages } = props;
     return (
       <Grid container>
         <form onSubmit={props.handleSubmit}>
           {props.textFields.map((tfProps, index) => {
             const { name } = tfProps;
-            const { messages } = props;
             return (
               // ! messages[name] only exists if there's an error for that field
               <Grid item key={index}>
@@ -40,25 +39,13 @@ export class Form extends PureComponent {
             );
           })}
           <Grid item>
-            <SubmitButton
-              variant={(buttons && buttons.variant) || "contained"}
-              type="submit"
-              fullWidth={true}
-              size="large"
-              color="primary"
-            >
-              {(buttons && buttons.submit) || "Submit"}
+            <SubmitButton {...props.buttons.submit} type="submit">
+              {buttons.submit.text}
             </SubmitButton>
           </Grid>
           <Grid item>
-            <Button
-              variant={(buttons && buttons.variant) || "outlined"}
-              type="reset"
-              onClick={props.handleReset}
-              fullWidth={true}
-              size="large"
-            >
-              {(buttons && buttons.reset) || "Reset"}
+            <Button {...props.buttons.reset} type="submit">
+              {buttons.reset.text}
             </Button>
           </Grid>
         </form>
@@ -67,7 +54,8 @@ export class Form extends PureComponent {
   }
 }
 
-const SubmitButton = styled(Button)(({ theme }) => ({
+// >>> STYLES >>>
+const SubmitButton = styled(Button)(() => ({
   fontWeight: "bold",
   marginBottom: "20px"
 }));
@@ -77,6 +65,8 @@ const ValidationMessage = styled(Typography)(({ theme }) => ({
   fontWeight: "bold"
 }));
 
+// >>> PROPTYPES >>>
+// ! Everything except the buttons are required.
 Form.propTypes = {
   //** An array of objects describing MUI TextField props */
   textFields: PropTypes.arrayOf(
@@ -94,12 +84,28 @@ Form.propTypes = {
   // ** It should reset the form and validation messages */
   handleReset: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  // ** Use to pass MUI props. Overriding any of these means you have to specify the full object */
   buttons: PropTypes.shape({
-    //** The submit button text */
-    submit: PropTypes.string,
-    //** The reset button text */
-    reset: PropTypes.string,
-    //** An MUI variant */
-    variant: PropTypes.string
+    // No point in defining these as they are passed to MUI - it can handle types
+    submit: PropTypes.object,
+    reset: PropTypes.object
   })
+};
+
+Form.defaultProps = {
+  buttons: {
+    submit: {
+      text: "Submit",
+      variant: "contained",
+      fullWidth: true,
+      size: "large",
+      color: "primary"
+    },
+    reset: {
+      text: "Reset",
+      variant: "outlined",
+      fullWidth: true,
+      size: "large"
+    }
+  }
 };
