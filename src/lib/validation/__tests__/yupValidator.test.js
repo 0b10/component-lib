@@ -25,6 +25,21 @@ describe("yupValidator()", () => {
     expect(typeof yupValidator).toBe("function");
   });
 
+  // >>> PARAMS >>>
+  describe("The param: options", () => {
+    // +++ test default options +++
+    it("should work with a default value", async () => {
+      const result = await validate({ paramOne: "123", paramTwo: "123" });
+      expect(result.valid).toBe(true);
+    });
+
+    // +++ assert that abortEarly can never be true +++
+    it("should throw an error if { abortEarly: true }", () => {
+      expect(() => yupValidator(testSchema, { abortEarly: true })).toThrow();
+    });
+  });
+
+  // >>> REJECTS >>>
   // +++ check successfully rejects +++
   describe.each`
     paramOne | paramTwo | p1Msg             | p2Msg
@@ -64,6 +79,7 @@ describe("yupValidator()", () => {
     }
   );
 
+  // >>> ACCEPTS >>>
   // +++ check successfully accepts +++
   describe.each`
     paramOne   | paramTwo
@@ -83,11 +99,13 @@ describe("yupValidator()", () => {
         expect(result.valid).toBe(true);
       });
 
+      // +++ check message is undefined +++
       it("should have an undefined message for paramOne", async () => {
         const { paramOne: retval } = await validate({ paramOne, paramTwo });
         expect(retval).toBe(undefined);
       });
 
+      // +++ check message is undefined +++
       it("should have an undefined message for paramTwo", async () => {
         const { paramTwo: retval } = await validate({ paramOne, paramTwo });
         expect(retval).toBe(undefined);
