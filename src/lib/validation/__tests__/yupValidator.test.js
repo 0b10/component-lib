@@ -19,9 +19,6 @@ const testSchema = Object.freeze(
 
 const validate = Object.freeze(yupValidator(testSchema));
 
-// ${1}     | ${"abc"} | ${"one-min"}      | ${"one-min"}
-//         ${"abc"} | ${1}   | ${"one-min"} | ${"one-min"}
-
 describe("yupValidator()", () => {
   // +++ test exists +++
   it("should be a callable function", () => {
@@ -49,20 +46,20 @@ describe("yupValidator()", () => {
 
       // +++ test message for param 1 +++
       it(`should return the correct error messages for paramOne: "${p1Msg}"`, async () => {
-        const { paramOne: p1RetVal } = await validate({
+        const { paramOne: retval } = await validate({
           paramOne,
           paramTwo
         });
-        expect(p1RetVal).toBe(p1Msg);
+        expect(retval).toBe(p1Msg);
       });
 
       // +++ test message for param 2 +++
       it(`should return the correct error messages for paramTwo: "${p2Msg}"`, async () => {
-        const { paramTwo: p2RetVal } = await validate({
+        const { paramTwo: retval } = await validate({
           paramOne,
           paramTwo
         });
-        expect(p2RetVal).toBe(p2Msg);
+        expect(retval).toBe(p2Msg);
       });
     }
   );
@@ -87,8 +84,8 @@ describe("yupValidator()", () => {
       });
 
       it("should have an undefined message for paramOne", async () => {
-        const { paramOne: p1RetVal } = await validate({ paramOne, paramTwo });
-        expect(p1RetVal).toBe(undefined);
+        const { paramOne: retval } = await validate({ paramOne, paramTwo });
+        expect(retval).toBe(undefined);
       });
 
       it("should have an undefined message for paramTwo", async () => {
