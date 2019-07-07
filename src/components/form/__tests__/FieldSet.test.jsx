@@ -4,6 +4,7 @@ import { mount, shallow } from "enzyme";
 import { FieldSet } from "../FieldSet";
 
 describe("Package: form", () => {
+  // +++ basic render +++
   describe("Component: FieldSet", () => {
     it("should render something", () => {
       const wrapper = shallow(
@@ -13,6 +14,8 @@ describe("Package: form", () => {
       );
       expect(wrapper.length).toBe(1);
     });
+
+    // +++ legend text +++
     describe.each`
       legend
       ${undefined}
@@ -28,6 +31,16 @@ describe("Package: form", () => {
         ).find("legend");
         expect(wrapper.text()).toBe(legend ? legend : "");
       });
+    });
+
+    // +++ snapshot +++
+    it("should match the snapshot", () => {
+      const wrapper = shallow(
+        <FieldSet legend="test-legend">
+          <div>test</div>
+        </FieldSet>
+      );
+      expect(wrapper).toMatchSnapshot();
     });
   });
 });

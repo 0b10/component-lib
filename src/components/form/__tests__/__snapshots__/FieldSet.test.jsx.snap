@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Package: form Component: FieldSet should match the snapshot 1`] = `
+<fieldset
+  style={
+    Object {
+      "borderRadius": "4px",
+      "borderWidth": "1px",
+      "padding": "50px",
+    }
+  }
+>
+  <legend>
+    test-legend
+  </legend>
+  <div>
+    test
+  </div>
+</fieldset>
+`;
