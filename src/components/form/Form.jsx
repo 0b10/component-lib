@@ -24,11 +24,12 @@ export class Form extends PureComponent {
                   error={messages && typeof messages[name] === "string"}
                   variant="outlined"
                   size="large"
+                  fullWidth
                   {...tfProps}
                 />
                 {
                   <Box py={1}>
-                    <ValidationMessage align="right">
+                    <ValidationMessage color="error" align="right">
                       {(messages && messages[name]) || (
                         <React.Fragment>&nbsp;</React.Fragment>
                       )}
@@ -39,12 +40,16 @@ export class Form extends PureComponent {
             );
           })}
           <Grid item>
-            <SubmitButton {...props.buttons.submit} type="submit">
+            <SubmitButton type="submit" {...props.buttons.submit}>
               {buttons.submit.text}
             </SubmitButton>
           </Grid>
           <Grid item>
-            <Button {...props.buttons.reset} type="submit">
+            <Button
+              type="reset"
+              onClick={props.handleReset}
+              {...props.buttons.reset}
+            >
               {buttons.reset.text}
             </Button>
           </Grid>
