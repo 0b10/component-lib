@@ -6576,6 +6576,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                   <ForwardRef(ListItemIcon)
                                                     classes={
                                                       Object {
+                                                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                         "root": "MuiListItemIcon-root",
                                                       }
                                                     }
@@ -7087,6 +7088,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                   <ForwardRef(ListItemIcon)
                                                     classes={
                                                       Object {
+                                                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                         "root": "MuiListItemIcon-root",
                                                       }
                                                     }
@@ -7606,6 +7608,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                   <ForwardRef(ListItemIcon)
                                                     classes={
                                                       Object {
+                                                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                         "root": "MuiListItemIcon-root",
                                                       }
                                                     }
@@ -8135,6 +8138,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                 <ForwardRef(ListItemIcon)
                                                   classes={
                                                     Object {
+                                                      "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                       "root": "MuiListItemIcon-root",
                                                     }
                                                   }
@@ -8687,6 +8691,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                   <ForwardRef(ListItemIcon)
                                                     classes={
                                                       Object {
+                                                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                         "root": "MuiListItemIcon-root",
                                                       }
                                                     }
@@ -9201,6 +9206,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                 <ForwardRef(ListItemIcon)
                                                   classes={
                                                     Object {
+                                                      "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                       "root": "MuiListItemIcon-root",
                                                     }
                                                   }
@@ -14585,6 +14591,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                   <ForwardRef(ListItemIcon)
                                                     classes={
                                                       Object {
+                                                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                         "root": "MuiListItemIcon-root",
                                                       }
                                                     }
@@ -15096,6 +15103,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                   <ForwardRef(ListItemIcon)
                                                     classes={
                                                       Object {
+                                                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                         "root": "MuiListItemIcon-root",
                                                       }
                                                     }
@@ -15615,6 +15623,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                   <ForwardRef(ListItemIcon)
                                                     classes={
                                                       Object {
+                                                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                         "root": "MuiListItemIcon-root",
                                                       }
                                                     }
@@ -16144,6 +16153,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                 <ForwardRef(ListItemIcon)
                                                   classes={
                                                     Object {
+                                                      "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                       "root": "MuiListItemIcon-root",
                                                     }
                                                   }
@@ -16696,6 +16706,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                   <ForwardRef(ListItemIcon)
                                                     classes={
                                                       Object {
+                                                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                         "root": "MuiListItemIcon-root",
                                                       }
                                                     }
@@ -17214,6 +17225,7 @@ exports[`Package: SideMenu Component: SideMenu when the SideMenu is open and the
                                                 <ForwardRef(ListItemIcon)
                                                   classes={
                                                     Object {
+                                                      "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                                                       "root": "MuiListItemIcon-root",
                                                     }
                                                   }

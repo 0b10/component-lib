@@ -128,6 +128,7 @@ exports[`Package: SideMenu Component: AccountAction when logged in should match 
                   <ForwardRef(ListItemIcon)
                     classes={
                       Object {
+                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                         "root": "MuiListItemIcon-root",
                       }
                     }
@@ -678,6 +679,7 @@ exports[`Package: SideMenu Component: AccountAction when logged out should match
                   <ForwardRef(ListItemIcon)
                     classes={
                       Object {
+                        "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                         "root": "MuiListItemIcon-root",
                       }
                     }

@@ -78,6 +78,7 @@ exports[`Package: SideMenu Component: CloseMenu should match existing snapshot 1
                 <ForwardRef(ListItemIcon)
                   classes={
                     Object {
+                      "alignItemsFlexStart": "MuiListItemIcon-alignItemsFlexStart",
                       "root": "MuiListItemIcon-root",
                     }
                   }
