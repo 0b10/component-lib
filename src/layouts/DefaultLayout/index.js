@@ -1,1 +1,4 @@
-export { DefaultLayout as default } from "./DefaultLayout";
+import * as stubs from "./__helpers__/stubs";
+
+export { stubs };
+export { DefaultLayout } from "./DefaultLayout";

@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import { DefaultLayout, stubs } from "../../layouts";
 
 export class Home extends PureComponent {
   constructor(props) {
@@ -9,9 +10,9 @@ export class Home extends PureComponent {
 
   render() {
     return (
-      <React.Fragment>
+      <DefaultLayout {...stubs.defaultLayout.defaultLayoutProps}>
         <div>stub</div>
-      </React.Fragment>
+      </DefaultLayout>
     );
   }
 }
