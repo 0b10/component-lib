@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --testPathIgnorePatterns='^<rootDir>/(?:.+/)?(?:__helpers__|node_modules)(?:/.*)?$'",
+    "test": "NODE_ENV=test react-scripts test --env=jsdom --testPathIgnorePatterns='^<rootDir>/(?:.+/)?(?:__helpers__|node_modules)(?:/.*)?$'",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"

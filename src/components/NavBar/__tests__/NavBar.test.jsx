@@ -34,6 +34,8 @@ describe("NavBar...", () => {
         { width: "xs", numItems: 0 }
       ].forEach(({ width, numItems }) => {
         it(`should render ${numItems} items for widths <= "${width}"`, () => {
+          // NavBar checks for NODE_ENV === "test", and sets xl width, which breaks this test.
+          process.env.NODE_ENV = "";
           const wrappers = mount(
             <NavBar
               navItems={mockNavItems}

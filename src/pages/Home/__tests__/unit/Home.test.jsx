@@ -11,10 +11,12 @@ describe("Unit Tests: Home (page)", () => {
   describe.each`
     component
     ${"NavBar"}
+    ${"SideMenuButton"}
+    ${"SideMenu"}
   `("$component", ({ component }) => {
     it(`should render`, () => {
       const wrapper = mount(<HomeFactory />).find(component);
-      console.log(wrapper.debug());
+      // console.log(wrapper.debug());
       expect(wrapper.length).toBe(1);
     });
   });

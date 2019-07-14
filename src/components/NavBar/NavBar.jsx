@@ -8,6 +8,7 @@ import { AppBar, Grid, Hidden, Tab, Tabs } from "@material-ui/core";
 export class NavBar extends PureComponent {
   constructor(props) {
     super(props);
+    this.test = process.env.NODE_ENV === "test";
     this.state = { highlightedTab: 0 };
     this.handleNavItemClick = this.handleNavItemClick.bind(this);
   }
@@ -22,7 +23,7 @@ export class NavBar extends PureComponent {
     return (
       <AppBar>
         <Grid container direction="row">
-          <Hidden only="xs" width={width}>
+          <Hidden only="xs" width={this.test ? "xl" : width}>
             <Grid item container direction="row" justify="flex-start" sm={11}>
               <Tabs value={this.state.highlightedTab}>
                 {navItems.map(({ label, uri }, index) => (
