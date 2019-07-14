@@ -1,19 +1,11 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { DefaultLayout, stubs } from "../../layouts";
+import { Posts, postsStubProps } from "../../components";
 
 export class Home extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
-    return (
-      <DefaultLayout {...stubs.defaultLayout.defaultLayoutProps}>
-        <div>stub</div>
-      </DefaultLayout>
-    );
+    // FIXME: initialise Posts with real, non-stub props
+    return <Posts {...postsStubProps.posts} />;
   }
 }
 
