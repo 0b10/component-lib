@@ -3,7 +3,7 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
 
-export const asCentered = WrappedComponent => {
+export const makeCentered = WrappedComponent => {
   return props => (
     <StyledGrid container direction="row" justify="center" alignItems="center">
       <Grid item alignItems="center">

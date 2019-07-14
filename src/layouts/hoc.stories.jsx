@@ -3,12 +3,12 @@ import { storiesOf } from "@storybook/react";
 // 3rd Party
 import { Paper, Typography } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
-import { asCentered } from "./hoc";
+import { makeCentered } from "./hoc";
 
 const title = "Layouts";
 
 storiesOf(title, module).add("Centered HOC", () =>
-  asCentered(TestContent)({ text: "TEST!" })
+  makeCentered(TestContent)({ text: "TEST!" })
 );
 
 const TestContent = props => (
