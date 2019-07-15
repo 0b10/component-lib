@@ -1,7 +1,7 @@
 const navItems_ = [
-  { label: "Label One", uri: "/label/one" },
-  { label: "Label Two", uri: "/label/two" },
-  { label: "Label Three", uri: "/label/three" }
+  { label: "NavItem One", uri: "/label/one" },
+  { label: "NavItem Two", uri: "/label/two" },
+  { label: "NavItem Three", uri: "/label/three" }
 ];
 
 /**

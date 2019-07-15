@@ -8,12 +8,12 @@ import {
 } from "../../components";
 
 describe("Unit Tests: App", () => {
+  const postsLength = () => postsStubPropsFactory().getPosts().length;
+
   it("should render something, anything", () => {
     const wrapper = mount(<AppFactory />);
     expect(wrapper.length).toBe(1);
   });
-
-  const postsLength = () => postsStubPropsFactory().getPosts().length;
 
   describe.each`
     component           | length
