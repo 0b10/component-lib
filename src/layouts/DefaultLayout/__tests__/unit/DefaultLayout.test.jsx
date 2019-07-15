@@ -1,8 +1,12 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { DefaultLayout } from "../../DefaultLayout";
-import { NavBar, SideMenuButton } from "../../../../components";
-import * as stubs from "../../__helpers__/stubs";
+import {
+  NavBar,
+  navBarStubPropsFactory,
+  SideMenuButton,
+  sideMenuButtonStubPropsFactory
+} from "../../../../components";
 
 describe("Unit Tests: layout/DefaultLayout", () => {
   it("should render", () => {
@@ -36,8 +40,8 @@ describe("Unit Tests: layout/DefaultLayout", () => {
 const TestDefaultLayout = props => {
   return (
     <DefaultLayout
-      sideMenuButtonProps={stubs.sideMenuButtonProps}
-      navBarProps={{ ...stubs.navBarProps, width: "xl" }}
+      sideMenuButtonProps={sideMenuButtonStubPropsFactory()}
+      navBarProps={{ ...navBarStubPropsFactory() }}
     >
       {props.children}
     </DefaultLayout>

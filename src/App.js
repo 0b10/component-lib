@@ -1,8 +1,12 @@
 import React from "react";
 import CssBaseLine from "@material-ui/core/CssBaseline";
-import { DefaultLayout, stubs } from "./layouts";
+import { DefaultLayout } from "./layouts";
 import { Home } from "./pages";
-import { ThemeProvider } from "./components";
+import {
+  ThemeProvider,
+  navBarStubPropsFactory,
+  sideMenuButtonStubPropsFactory
+} from "./components";
 
 const App = props => {
   return (
@@ -10,8 +14,8 @@ const App = props => {
       <ThemeProvider>
         <CssBaseLine />
         <DefaultLayout
-          sideMenuButtonProps={stubs.defaultLayout.sideMenuButtonProps}
-          navBarProps={stubs.defaultLayout.navBarProps}
+          sideMenuButtonProps={sideMenuButtonStubPropsFactory()}
+          navBarProps={navBarStubPropsFactory()}
           {...props.sideMenuButtonProps}
           {...props.navBarProps}
         >

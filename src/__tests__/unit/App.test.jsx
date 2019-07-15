@@ -1,8 +1,11 @@
 import React from "react";
 import App from "../../App";
 import { mount } from "enzyme";
-import { stubs } from "../../layouts";
 import { stubs as postsStubs } from "../../components";
+import {
+  navBarStubPropsFactory,
+  sideMenuButtonStubPropsFactory
+} from "../../components";
 
 describe("Unit Tests: App", () => {
   it("should render something, anything", () => {
@@ -29,7 +32,7 @@ describe("Unit Tests: App", () => {
 
 const AppFactory = () => (
   <App
-    sideMenuButtonProps={stubs.defaultLayout.sideMenuButtonProps}
-    navBarProps={stubs.defaultLayout.navBarProps}
+    sideMenuButtonProps={sideMenuButtonStubPropsFactory()}
+    navBarProps={navBarStubPropsFactory()}
   />
 );
