@@ -4,7 +4,7 @@ import { DefaultLayout, stubs } from "./layouts";
 import { Home } from "./pages";
 import { ThemeProvider } from "./components";
 
-function App() {
+const App = props => {
   return (
     <React.Fragment>
       <ThemeProvider>
@@ -12,12 +12,14 @@ function App() {
         <DefaultLayout
           sideMenuButtonProps={stubs.defaultLayout.sideMenuButtonProps}
           navBarProps={stubs.defaultLayout.navBarProps}
+          {...props.sideMenuButtonProps}
+          {...props.navBarProps}
         >
           <Home />
         </DefaultLayout>
       </ThemeProvider>
     </React.Fragment>
   );
-}
+};
 
 export default App;
