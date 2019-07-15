@@ -1,5 +1,5 @@
 // >>> STORE >>>
-const postsStore = {
+const _postsStore = {
   on: eventName => {
     const testing = process.env.NODE_ENV === "test";
     if (!testing)
@@ -7,9 +7,9 @@ const postsStore = {
   }
 };
 
-// >>> CONTENT >>>>
-// +++ for Post +++
-const content = {
+// >>> POST >>>>
+// +++ content +++
+const _content = {
   imgUrl:
     "https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   title: "a title",
@@ -22,8 +22,9 @@ const content = {
   tags: ["tag", "loooooooong tag", "a"]
 };
 
-// +++ for Posts +++
-const getPosts = () => [
+// >>> POSTS >>>>
+// +++ content +++
+const _getPosts = () => [
   {
     imgUrl:
       "https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
@@ -118,24 +119,57 @@ const getPosts = () => [
   }
 ];
 
-export const stubs = {
-  post: {
-    // FIXME: not finished. Plus stories don't use stubs yet
-    content
-  },
-  posts: {
-    eventNames: {
-      failedAddFavorite: "failedAddFavorite",
-      failedAddReadLater: "failedAddReadLater",
-      failedRemoveFavorite: "failedRemoveFavorite",
-      failedRemoveReadLater: "failedRemoveReadLater",
-      postsUpdated: "postsUpdated"
-    },
-    getPosts,
-    handleFavorite: () => null,
-    handleReadLater: () => null,
-    handlePostClick: () => null,
-    handleTagClick: () => null,
-    postsStore
-  }
+// +++ events +++
+const _eventNames = {
+  failedAddFavorite: "failedAddFavorite",
+  failedAddReadLater: "failedAddReadLater",
+  failedRemoveFavorite: "failedRemoveFavorite",
+  failedRemoveReadLater: "failedRemoveReadLater",
+  postsUpdated: "postsUpdated"
 };
+
+// >>> EXPORTS >>>
+// FIXME: unfinished
+export const postStubPropsFactory = (content = _content) => ({
+  content
+});
+
+/**
+ * A factory function for producing all Posts props, with sensible defaults.
+ * @param {object} eventNames - Event names to use internally for store observation:
+ *  {
+ *    failedAddFavorite: string,
+ *    failedAddReadLater: string,
+ *    failedRemoveFavorite: string,
+ *    failedRemoveReadLater: string,
+ *    postsUpdated: string
+ * }
+ * @param {function} getPosts - fn() => { imgUrl: string, title: string, body: string, postID: string,
+ * postUrl: string, favorite: bool, readLater: bool, createdAt: Date, modifiedAt: Date,
+ * tags: [string] }
+ * @param {function} handleFavorite - fn(postID) => undefined
+ * @param {function} handleReadLater - fn(postID) => undefined
+ * @param {function} handlePostClick - fn(uri) => undefined
+ * @param {function} handleTagClick - fn(uri) => undefined
+ * @param {Object} postsStore - An EventEmitter where all Post events are registred.
+ * @example fn(eventNames, fn, fn, fn, fn, fn, store)
+ * @returns {Object} - { eventNames, getPosts, handleFavorite, handleReadLater, handlePostClick,
+ *  handleTagClick, postsStore }
+ */
+export const postsStubPropsFactory = (
+  eventNames = _eventNames,
+  getPosts = _getPosts,
+  handleFavorite = () => null,
+  handleReadLater = () => null,
+  handlePostClick = () => null,
+  handleTagClick = () => null,
+  postsStore = _postsStore
+) => ({
+  eventNames,
+  getPosts,
+  handleFavorite,
+  handleReadLater,
+  handlePostClick,
+  handleTagClick,
+  postsStore
+});

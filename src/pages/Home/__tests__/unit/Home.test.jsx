@@ -5,7 +5,7 @@ import CssBaseLine from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "../../../../components";
 // Local
 import { Home } from "../../Home";
-import { stubs } from "../../../../components";
+import { postsStubPropsFactory } from "../../../../components";
 
 describe("Unit Tests: Home (page)", () => {
   it("should render something, anything", () => {
@@ -26,7 +26,7 @@ describe("Unit Tests: Home (page)", () => {
   });
 });
 
-const numPosts = () => stubs.posts.posts.getPosts().length;
+const numPosts = () => postsStubPropsFactory().getPosts().length;
 
 // ! These tests don't need to pass props, as Pages are essentially "leaf" node in the dependency
 // !  graph , and are initialised in the module

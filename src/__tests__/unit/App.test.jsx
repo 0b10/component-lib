@@ -1,10 +1,10 @@
 import React from "react";
 import App from "../../App";
 import { mount } from "enzyme";
-import { stubs as postsStubs } from "../../components";
 import {
   navBarStubPropsFactory,
-  sideMenuButtonStubPropsFactory
+  sideMenuButtonStubPropsFactory,
+  postsStubPropsFactory
 } from "../../components";
 
 describe("Unit Tests: App", () => {
@@ -13,7 +13,7 @@ describe("Unit Tests: App", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  const postsLength = () => postsStubs.posts.posts.getPosts().length;
+  const postsLength = () => postsStubPropsFactory().getPosts().length;
 
   describe.each`
     component           | length
