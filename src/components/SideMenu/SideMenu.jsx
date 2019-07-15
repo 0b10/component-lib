@@ -191,6 +191,7 @@ const StyledListItem = styled(ListItem)({
 
 // >>> PROPTYPES >>>
 // ~~~ Authed ~~~
+// FIXME: tidy up docs
 /**
  * Hide a component if not authenticated.
  */

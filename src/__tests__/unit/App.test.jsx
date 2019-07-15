@@ -18,6 +18,7 @@ describe("Unit Tests: App", () => {
     ${"SideMenuButton"} | ${1}
     ${"SideMenu"}       | ${1}
     ${"Post"}           | ${postsLength()}
+    ${"Posts"}          | ${1}
   `("$component", ({ component, length }) => {
     it(`should be rendered ${length > 1 ? length + " times" : "once"}`, () => {
       const wrapper = mount(<AppFactory />).find(component);

@@ -8,19 +8,23 @@ import MailIcon from "@material-ui/icons/Mail";
 import RandomIcon from "@material-ui/icons/Add";
 import SettingsIcon from "@material-ui/icons/Settings";
 
+/**
+ * Use in place of a getProfileDetails handler, this particular implmentation has a custom avatar
+ * @returns { username, uri, avatarUri }
+ */
 export const getProfileDetailsWithAvatar = () => ({
   username: "AProfileName",
   uri: "/my/profile",
   avatarUri: "https://img.icons8.com/ios/50/000000/javascript-logo-filled.png"
 });
 
-export const getProfileDetails = () => ({
+const getProfileDetails_ = () => ({
   username: "AProfileName",
   uri: "/my/profile",
   avatarUrl: false
 });
 
-export const accountActions = {
+const accountActions_ = {
   login: {
     primaryText: "Login",
     uri: "/login",
@@ -33,13 +37,13 @@ export const accountActions = {
   }
 };
 
-export const settingsItem = {
+const settingsItem_ = {
   primaryText: "Settings",
   uri: "/settings",
   icon: SettingsIcon
 };
 
-export const menuItems = [
+const menuItems_ = [
   { primaryText: "Item One", uri: "/item1," },
   { primaryText: "Item Two", uri: "/item2," },
   { primaryText: "Item Three", uri: "/item3," },
@@ -47,6 +51,10 @@ export const menuItems = [
   { primaryText: "Item Five", uri: "/item5" }
 ];
 
+/**
+ * Menu items with custom icons set.
+ * @returns { primaryText, uri, icon }
+ */
 export const menuItemsWithCustomIcons = [
   { primaryText: "Item One", uri: "/item1,", icon: MailIcon },
   { primaryText: "Item Two", uri: "/item2,", icon: BlockIcon },
@@ -55,38 +63,39 @@ export const menuItemsWithCustomIcons = [
   { primaryText: "Item Five", uri: "/item5", icon: RandomIcon }
 ];
 
+/**
+ * A settings item with custom icon set
+ * @returns { primaryText, uri, icon }
+ */
 export const settingsItemWithCustomIcon = {
   primaryText: "Settings",
   uri: "/settings",
   icon: CancelPresentIcon
 };
 
-// >>> SideMenuButton >>>
-export const sideMenuButtonProps = {
-  handleItemClick: () => null,
-  menuItems: menuItemsWithCustomIcons,
-  isAuthed: () => true,
+/**
+ * A factory for producing SideMenuButton props - sensible defaults in place.
+ * @param {function} handleItemClick - fn(uri) => undefined
+ * @param {Object} menuItems - { primaryText, uri, icon } // icon is optional
+ * @param {function} isAuthed - fn() => bool
+ * @param {function} getProfileDetails = fn() => { username, url, avatar } // avatar is optional
+ * @param {Object} accountActions - { login, logout } ...and for each: { primaryText, uri, icon }
+ * @param {Object} settings - { primaryText, uri, icon }
+ * @example fn(handleItemClick, menuItems, isAuthed, getProfleDetails, accountActions, settings)
+ * @returns { handleItemClick, menuItems, isAuthed, getProfleDetails, accountActions, settings }
+ */
+export const sideMenuButtonStubPropsFactory = (
+  handleItemClick = () => null,
+  menuItems = menuItems_,
+  isAuthed = () => true,
+  getProfileDetails = getProfileDetails_,
+  accountActions = accountActions_,
+  settings = settingsItem_
+) => ({
+  handleItemClick,
+  menuItems,
+  isAuthed,
   getProfileDetails,
   accountActions,
-  settings: settingsItemWithCustomIcon
-};
-
-// >>> NavBar >>>
-export const navItems = [
-  { label: "one", uri: "#" },
-  { label: "two", uri: "#" },
-  { label: "three", uri: "#" }
-];
-
-export const navBarProps = {
-  navItems,
-  handleNavItemClick: () => null
-  // There should be menuButton here too, but this is overridden in DefaultLayout where it's used
-  // Feel free to add it, as it won't affect that component.
-};
-
-// >>> DefaultLayout >>>
-export const stubs = {
-  sideMenuButtonProps,
-  navBarProps
-};
+  settings
+});

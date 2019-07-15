@@ -1,20 +1,20 @@
 import React from "react";
+// 3rd party
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import CssBaseLine from "@material-ui/core/CssBaseline";
-
-// Icons
 import { IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-
+// Local
 import { NavBar } from "./NavBar";
 import { ThemeProvider } from "../ThemeProvider";
+import { navBarStubPropsFactory } from "./__helpers__/stubs";
 
 storiesOf("NavBar", module).add("Typical state", () => (
   <ThemeProvider>
     <CssBaseLine />
     <NavBar
-      navItems={mockNavItems}
+      navItems={navBarStubPropsFactory().navItems}
       handleNavItemClick={action("handleTagClick")}
       menuButton={
         <IconButton
@@ -28,9 +28,3 @@ storiesOf("NavBar", module).add("Typical state", () => (
     />
   </ThemeProvider>
 ));
-
-const mockNavItems = [
-  { label: "Label One", uri: "/label/one" },
-  { label: "Label Two", uri: "/label/two" },
-  { label: "Label Three", uri: "/label/three" }
-];
