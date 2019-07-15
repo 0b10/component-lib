@@ -129,11 +129,47 @@ const _eventNames = {
 };
 
 // >>> EXPORTS >>>
-// FIXME: unfinished
-export const postStubPropsFactory = (content = _content) => ({
-  content
+// +++ post +++
+/**
+ * A factory function for producing all Post props, with sensible defaults.
+ * @param {Object} content - Post content: { imgUrl: string, title: string, body: string,
+ *  postID: string, postUrl: string, favorite: bool, readLater: bool, createdAt: Date,
+ *  modifiedAt: Date, tags: [string] }
+ * @param {Object} postsStore - An EventEmitter where all Post events are registred. *
+ * @param {object} eventNames - Event names to use internally for store observation:
+ *  {
+ *    failedAddFavorite: string,
+ *    failedAddReadLater: string,
+ *    failedRemoveFavorite: string,
+ *    failedRemoveReadLater: string,
+ * }
+ * @param {function} handleFavorite - fn(postID) => undefined
+ * @param {function} handleReadLater - fn(postID) => undefined
+ * @param {function} handlePostClick - fn(uri) => undefined
+ * @param {function} handleTagClick - fn(uri) => undefined
+ * @example fn(eventNames, fn, fn, fn, fn, fn, store)
+ * @returns {Object} - { content, handleFavorite, handleReadLater, handlePostClick,
+ *  handleTagClick, postsStore, eventNames }
+ */
+export const postStubPropsFactory = (
+  content = _content,
+  postsStore = _postsStore,
+  eventNames = _eventNames,
+  handleFavorite = () => null,
+  handleReadLater = () => null,
+  handlePostClick = () => null,
+  handleTagClick = () => null
+) => ({
+  content,
+  postsStore,
+  eventNames,
+  handleFavorite,
+  handleReadLater,
+  handlePostClick,
+  handleTagClick
 });
 
+// +++ posts +++
 /**
  * A factory function for producing all Posts props, with sensible defaults.
  * @param {object} eventNames - Event names to use internally for store observation:
