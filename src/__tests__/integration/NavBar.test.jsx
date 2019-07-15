@@ -9,13 +9,32 @@ import { sideMenuButtonStubPropsFactory } from "../../components";
 
 describe("Integration Tests: App/NavBar", () => {
   const numTabs = () => navBarStubPropsFactory().navItems.length;
+  const navTabs = () => navBarStubPropsFactory().navItems;
 
   afterEach(cleanup);
 
   describe("NavBar", () => {
+    // +++ tab quantity +++
     it(`should have ${numTabs()} tabs`, () => {
       const { getAllByText } = render(<DefaultLayoutFactory />);
       expect(getAllByText(/^NavItem/).length).toBe(numTabs());
+    });
+
+    // +++ NavItem click response +++
+    navTabs().forEach(({ label, uri }, tabNum) => {
+      describe(`For tab number ${tabNum}`, () => {
+        it("should respond to a click", () => {
+          const clickSpy = jest.fn();
+          const { getByText } = render(
+            <DefaultLayout
+              navBarProps={navBarStubPropsFactory(undefined, clickSpy)}
+              sideMenuButtonProps={sideMenuButtonStubPropsFactory()}
+            />
+          );
+          fireEvent.click(getByText(label));
+          expect(clickSpy.mock.calls.length).toBe(1);
+        });
+      });
     });
   });
 });
