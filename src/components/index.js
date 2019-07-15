@@ -1,8 +1,8 @@
-import { stubs as postsStubs } from "./Post";
+import { stubs as postsStubs } from "./Posts";
 
 export { FieldSet, Form, withValidation } from "./form";
 export { NavBar } from "./NavBar";
-export { Posts } from "./Post";
+export { Posts } from "./Posts";
 export { SideMenu, SideMenuButton } from "./SideMenu";
 export { ThemeProvider, themes } from "./ThemeProvider";
 export const stubs = { posts: postsStubs };
