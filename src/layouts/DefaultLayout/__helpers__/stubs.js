@@ -87,7 +87,7 @@ export const navBarProps = {
 };
 
 // >>> DefaultLayout >>>
-export const defaultLayoutProps = {
+export const stubs = {
   sideMenuButtonProps,
   navBarProps
 };

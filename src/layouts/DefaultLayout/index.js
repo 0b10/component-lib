@@ -1,4 +1,2 @@
-import * as stubs from "./__helpers__/stubs";
-
-export { stubs };
+export { stubs } from "./__helpers__/stubs";
 export { DefaultLayout } from "./DefaultLayout";
