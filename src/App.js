@@ -18,6 +18,7 @@ const App = props => {
           navBarProps={navBarStubPropsFactory()}
           {...props.sideMenuButtonProps}
           {...props.navBarProps}
+          postsProps={props.postsProps}
         >
           <Home />
         </DefaultLayout>
