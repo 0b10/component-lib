@@ -41,7 +41,10 @@ export class SideMenuButton extends PureComponent {
     const { props, state } = this;
     return (
       <React.Fragment>
-        <IconButton onClick={this.openMenu}>
+        <IconButton
+          data-testid={props.openMenuTestId}
+          onClick={props.openMenuHandler || this.openMenu}
+        >
           <MenuIcon />
         </IconButton>
         <SideMenu {...props} open={state.open} closeMenu={this.closeMenu} />
@@ -384,6 +387,11 @@ SideMenuButton.propTypes = {
       icon: PropTypes.object,
       // ** The callback fired when menu items are clicked. It is passed a URI. */
       handleItemClick: PropTypes.func
-    }).isRequired
+    }).isRequired,
+
+    // ** Typically used for testing, not for client consumption */
+    openMenuHandler: PropTypes.func,
+    // ** data-testid for testing with the react-testing-library */
+    openMenuTestId: PropTypes.string
   }).isRequired
 };

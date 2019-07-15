@@ -21,7 +21,7 @@ describe("Integration Tests: App/NavBar", () => {
     });
 
     // +++ NavItem click response +++
-    navTabs().forEach(({ label, uri }, tabNum) => {
+    navTabs().forEach(({ label }, tabNum) => {
       describe(`For tab number ${tabNum}`, () => {
         it("should respond to a click", () => {
           const clickSpy = jest.fn();
@@ -34,6 +34,24 @@ describe("Integration Tests: App/NavBar", () => {
           fireEvent.click(getByText(label));
           expect(clickSpy.mock.calls.length).toBe(1);
         });
+      });
+    });
+
+    describe("SideMenuButton", () => {
+      it("should be clickable", () => {
+        const clickSpy = jest.fn();
+        const { getByTestId } = render(
+          <DefaultLayout
+            navBarProps={navBarStubPropsFactory()}
+            sideMenuButtonProps={{
+              ...sideMenuButtonStubPropsFactory(),
+              openMenuHandler: clickSpy,
+              openMenuTestId: "testid-side-menu-button"
+            }}
+          />
+        );
+        fireEvent.click(getByTestId("testid-side-menu-button"));
+        expect(clickSpy.mock.calls.length).toBe(1);
       });
     });
   });
