@@ -191,128 +191,75 @@ const StyledListItem = styled(ListItem)({
 
 // >>> PROPTYPES >>>
 // ~~~ Authed ~~~
-// FIXME: tidy up docs
-/**
- * Hide a component if not authenticated.
- */
+// **ide a component if not authenticated.
 Authed.propTypes = {
-  /**
-   * Control whether children are displayed
-   */
+  // ** Control whether children are displayed */
   authed: PropTypes.bool.isRequired
 };
 
 // ~~~ SideMenu ~~~
-/**
- * A drawer that opens from the right
- */
+// ** A drawer that opens from the right
 SideMenu.propTypes = {
-  /**
-   * Optionally whether the drawer is open or not.
-   */
+  // ** Optionally whether the drawer is open or not. */
   open: PropTypes.bool,
-
-  /**
-   * The callback fired when menu items are clicked. It is passed a URI.
-   */
+  // ** The callback fired when menu items are clicked. It is passed a URI. */
   handleItemClick: PropTypes.func.isRequired,
-
-  /**
-   * Get various pices of account information. Must return an object that includes the account name
-   *  and the URI that points to the user's profile.
+  /** Get various pices of account information. Must return an object that includes the account name
+   * and the URI that points to the user's profile.
    */
   getProfileDetails: PropTypes.func.isRequired,
-
-  /**
-   * An array of objects that describe menu items. These items are the primary buttons located just
+  /** An array of objects that describe menu items. These items are the primary buttons located just
    *  below the avatar. The URI is passed into the clock handler when an item is clicked.
    */
   menuItems: PropTypes.arrayOf(
     PropTypes.shape({
-      /**
-       * The displayed text.
-       */
+      // ** The displayed text. */
       primaryText: PropTypes.string.isRequired,
-      /**
-       * The URI passed into the click handler. Use it to route
-       */
+      // ** The URI passed into the click handler. Use it to route */
       uri: PropTypes.string.isRequired,
-      /**
-       * A Material UI icon component
-       */
+      // ** A Material UI icon component */
       icon: PropTypes.object
     }).isRequired
   ).isRequired,
-
-  /**
-   * An object that contains the neccessary information to create the settings button. The URI is passed
-   *  into the click handler when a button is clicked.
+  /** An object that contains the neccessary information to create the settings button. The URI is
+   * passed into the click handler when a button is clicked.
    */
   settings: PropTypes.shape({
-    /**
-     * The displayed text.
-     */
+    // ** The displayed text. */
     primaryText: PropTypes.string.isRequired,
-    /**
-     * The URI passed into the click handler. Use it to route
-     */
+    // ** The URI passed into the click handler. Use it to route */
     uri: PropTypes.string.isRequired,
-    /**
-     * A Material UI icon component
-     */
+    // ** A Material UI icon component */
     icon: PropTypes.object.isRequired
   }).isRequired,
-
-  /**
-   * An object of objects that describe he login/logout button. The only property that is mandatory
+  /** An object of objects that describe he login/logout button. The only property that is mandatory
    *  is the uri - which is the same URI passed into the click handler when the button is clicked.
    */
   accountActions: PropTypes.shape({
-    /**
-     * Details relating to the login button.
-     */
+    // ** Details relating to the login button. */
     login: PropTypes.shape({
-      /**
-       * The displayed text.
-       */
+      // ** The displayed text. */
       primaryText: PropTypes.string,
-      /**
-       * The URI passed into the click handler. Use it to route
-       */
+      // ** The URI passed into the click handler. Use it to route */
       uri: PropTypes.string.isRequired,
-      /**
-       * A Material UI icon component
-       */
+      // ** A Material UI icon component */
       icon: PropTypes.object,
-      /**
-       * The callback fired when menu items are clicked. It is passed a URI.
-       */
+      // ** The callback fired when menu items are clicked. It is passed a URI. */
       handleItemClick: PropTypes.func
     }).isRequired,
-    /**
-     * Details relating to the logout button.
-     */
+    // ** Details relating to the logout button. */
     logout: PropTypes.shape({
-      /**
-       * The displayed text.
-       */
+      // ** The displayed text. */
       primaryText: PropTypes.string,
-      /**
-       * The URI passed into the click handler. Use it to route
-       */
+      // ** The URI passed into the click handler. Use it to route */
       uri: PropTypes.string.isRequired,
-      /**
-       * A Material UI icon component
-       */
+      // ** A Material UI icon component */
       icon: PropTypes.object,
-      /**
-       * The callback fired when menu items are clicked. It is passed a URI.
-       */
+      // ** The callback fired when menu items are clicked. It is passed a URI. */
       handleItemClick: PropTypes.func
     }).isRequired
   }).isRequired,
-  /**
-   * State for opening and closing the drawer is held externally. Pass in a function that
+  /** State for opening and closing the drawer is held externally. Pass in a function that
    * manages that state. Opening and closing the drawer is managed with prop.open, but when
    * the CloseButton is clicked, that state needs to be sent to an external component. This
    * function should take no args, and serves only one purpose.
@@ -321,200 +268,121 @@ SideMenu.propTypes = {
 };
 
 // ~~~ Profile Avatar ~~~
-/**
- * Display the profile avatar at the top of the side menu.
- */
+// ** Display the profile avatar at the top of the side menu.
 ProfileAvatar.propTypes = {
-  /**
-   * Get various pices of account information. Must return an object that includes the account username
-   *  avatar URI (optional), and the URI that points to the user's profile.
+  /** Get various pices of account information. Must return an object that includes the account
+   * username avatar URI (optional), and the URI that points to the user's profile.
    */
   getProfileDetails: PropTypes.func.isRequired,
-  /**
-   * The callback fired when menu items are clicked. It is passed a URI.
-   */
+  // ** The callback fired when menu items are clicked. It is passed a URI. */
   handleItemClick: PropTypes.func.isRequired
 };
 
 // ~~~ AccountAction ~~~
-/**
- * A responsive login/logout button (responds to authentication status).
- */
+// ** A responsive login/logout button (responds to authentication status).
 AccountAction.propTypes = {
-  /**
-   * An object of objects that describe he login/logout button. The only property that is mandatory
+  /** An object of objects that describe he login/logout button. The only property that is mandatory
    *  is the uri - which is the same URI passed into the click handler when the button is clicked.
    */
   accountActions: PropTypes.shape({
-    /**
-     * Details relating to the login button.
-     */
+    // ** Details relating to the login button. */
     login: PropTypes.shape({
-      /**
-       * The displayed text.
-       */
+      // ** The displayed text. */
       primaryText: PropTypes.string,
-      /**
-       * The URI passed into the click handler. Use it to route
-       */
+      // ** The URI passed into the click handler. Use it to route */
       uri: PropTypes.string.isRequired,
-      /**
-       * A Material UI icon component
-       */
+      // ** A Material UI icon component */
       icon: PropTypes.object
     }).isRequired,
-    /**
-     * Details relating to the logout button.
-     */
+    // ** Details relating to the logout button. */
     logout: PropTypes.shape({
-      /**
-       * The displayed text.
-       */
+      // ** The displayed text. */
       primaryText: PropTypes.string,
-      /**
-       * The URI passed into the click handler. Use it to route
-       */
+      // ** The URI passed into the click handler. Use it to route */
       uri: PropTypes.string.isRequired,
-      /**
-       * A Material UI icon component
-       */
+      // ** A Material UI icon component */
       icon: PropTypes.object
     }).isRequired
   }).isRequired,
-  /**
-   * Control whether children are displayed
-   */
+  // ** Control whether children are displayed */
   authed: PropTypes.bool,
-  /**
-   * The callback fired when menu items are clicked. It is passed a URI.
-   */
+  // ** The callback fired when menu items are clicked. It is passed a URI. */
   handleItemClick: PropTypes.func.isRequired
 };
 
 // ~~~ MenuItem ~~~
-/**
- * A ginle menu item.
- */
+// ** A ginle menu item.
 MenuItem.propTypes = {
-  /**
-   * The displayed text.
-   */
+  // ** The displayed text. */
   primaryText: PropTypes.string.isRequired,
-  /**
-   * The URI passed into the click handler. Use it to route
-   */
+  // ** The URI passed into the click handler. Use it to route */
   uri: PropTypes.string.isRequired,
-  /**
-   * A Material UI icon component
-   */
+  // ** A Material UI icon component */
   icon: PropTypes.object,
-  /**
-   * The callback fired when menu items are clicked. It is passed a URI.
-   */
+  // ** The callback fired when menu items are clicked. It is passed a URI. */
   handleItemClick: PropTypes.func.isRequired
 };
 
 // ~~~ SideMenuButton ~~~
-/**
- * A Hamburger menu button that opens the SideMenu.
- */
+// ** A Hamburger menu button that opens the SideMenu.
 SideMenuButton.propTypes = {
-  /**
-   * The callback fired when menu items are clicked. It is passed a URI.
-   */
+  // ** The callback fired when menu items are clicked. It is passed a URI. */
   handleItemClick: PropTypes.func.isRequired,
-
-  /**
-   * Get various pices of account information. Must return an object that includes the account name
-   *  and the URI that points to the user's profile.
+  /** Get various pices of account information. Must return an object that includes the account name
+   * and the URI that points to the user's profile.
    */
   getProfileDetails: PropTypes.func.isRequired,
-
-  /**
-   * An array of objects that describe menu items. These items are the primary buttons located just
+  /** An array of objects that describe menu items. These items are the primary buttons located just
    *  below the avatar. The URI is passed into the clock handler when an item is clicked.
    */
   menuItems: PropTypes.arrayOf(
     PropTypes.shape({
-      /**
-       * The displayed text.
-       */
+      // ** The displayed text. */
       primaryText: PropTypes.string.isRequired,
-      /**
-       * The URI passed into the click handler. Use it to route
-       */
+      // ** The URI passed into the click handler. Use it to route */
       uri: PropTypes.string.isRequired,
-      /**
-       * A Material UI icon component
-       */
+      // ** A Material UI icon component */
       icon: PropTypes.object
     }).isRequired
   ).isRequired,
 
-  /**
-   * An object that contains the neccessary information to create the settings button. The URI is passed
-   *  into the click handler when a button is clicked.
+  /** An object that contains the neccessary information to create the settings button. The URI is
+   * passed into the click handler when a button is clicked.
    */
   settings: PropTypes.shape({
-    /**
-     * The displayed text.
-     */
+    // ** The displayed text. */
     primaryText: PropTypes.string.isRequired,
-    /**
-     * The URI passed into the click handler. Use it to route
-     */
+    // ** The URI passed into the click handler. Use it to route */
     uri: PropTypes.string.isRequired,
-    /**
-     * A Material UI icon component
-     */
+    // ** A Material UI icon component */
     icon: PropTypes.object.isRequired
   }).isRequired,
 
   /**
    * An object of objects that describe he login/logout button. The only property that is mandatory
-   *  is the uri - which is the same URI passed into the click handler when the button is clicked.
+   * is the uri - which is the same URI passed into the click handler when the button is clicked.
    */
   accountActions: PropTypes.shape({
-    /**
-     * Details relating to the login button.
-     */
+    // ** Details relating to the login button. */
     login: PropTypes.shape({
-      /**
-       * The displayed text.
-       */
+      // ** The displayed text. */
       primaryText: PropTypes.string,
-      /**
-       * The URI passed into the click handler. Use it to route
-       */
+      // ** The URI passed into the click handler. Use it to route */
       uri: PropTypes.string.isRequired,
-      /**
-       * A Material UI icon component
-       */
+      // ** A Material UI icon component */
       icon: PropTypes.object,
-      /**
-       * The callback fired when menu items are clicked. It is passed a URI.
-       */
+      // ** The callback fired when menu items are clicked. It is passed a URI. */
       handleItemClick: PropTypes.func
     }).isRequired,
-    /**
-     * Details relating to the logout button.
-     */
+    // ** Details relating to the logout button. */
     logout: PropTypes.shape({
-      /**
-       * The displayed text.
-       */
+      // ** The displayed text. */
       primaryText: PropTypes.string,
-      /**
-       * The URI passed into the click handler. Use it to route
-       */
+      // ** The URI passed into the click handler. Use it to route */
       uri: PropTypes.string.isRequired,
-      /**
-       * A Material UI icon component
-       */
+      // ** A Material UI icon component */
       icon: PropTypes.object,
-      /**
-       * The callback fired when menu items are clicked. It is passed a URI.
-       */
+      // ** The callback fired when menu items are clicked. It is passed a URI. */
       handleItemClick: PropTypes.func
     }).isRequired
   }).isRequired

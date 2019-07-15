@@ -99,3 +99,35 @@ export const sideMenuButtonStubPropsFactory = (
   accountActions,
   settings
 });
+
+/**
+ * A factory for producing SideMenuButton props - sensible defaults in place.
+ * @param {function} handleItemClick - fn(uri) => undefined
+ * @param {Object} menuItems - { primaryText, uri, icon } // icon is optional
+ * @param {function} isAuthed - fn() => bool
+ * @param {function} getProfileDetails = fn() => { username, url, avatar } // avatar is optional
+ * @param {Object} accountActions - { login, logout } ...and for each: { primaryText, uri, icon }
+ * @param {Object} settings - { primaryText, uri, icon }
+ * @param {function} closeMenu = fn(), when clicked, the menu should be closed. This is injected
+ *  by a HOC typically. SideMenuButton for example, does just that. This isn't an endpoint typically
+ *  exposed to the client.
+ * @example fn(handleItemClick, menuItems, isAuthed, getProfleDetails, accountActions, settings)
+ * @returns { handleItemClick, menuItems, isAuthed, getProfleDetails, accountActions, settings }
+ */
+export const sideMenuStubPropsFactory = (
+  handleItemClick = () => null,
+  menuItems = menuItems_,
+  isAuthed = () => true,
+  getProfileDetails = getProfileDetails_,
+  accountActions = accountActions_,
+  settings = settingsItem_,
+  closeMenu = () => null
+) => ({
+  handleItemClick,
+  menuItems,
+  isAuthed,
+  getProfileDetails,
+  accountActions,
+  settings,
+  closeMenu
+});
