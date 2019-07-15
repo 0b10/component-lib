@@ -1,2 +1,2 @@
 export { Posts } from "./Posts";
-export { stubProps as postsStubProps } from "./__helpers__/stubs";
+export { stubs } from "./__helpers__/stubs";

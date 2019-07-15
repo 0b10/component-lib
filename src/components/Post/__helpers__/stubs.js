@@ -118,7 +118,7 @@ const getPosts = () => [
   }
 ];
 
-export const stubProps = {
+export const stubs = {
   post: {
     // FIXME: not finished. Plus stories don't use stubs yet
     content
